@@ -11,7 +11,7 @@ window.onload = () => {
         let initialHtml = `
         <p>Escreva uma letra para começar o jogo</p>
         <form wordForm>
-            <input type="text" id="palavra" placeholder="Escreva aqui...">
+            <input type="text" id="palavra" name="palavraName" placeholder="Escreva aqui...">
             <button id="playButton">Jogar!</button>
         </form>
         `.trim();
@@ -20,8 +20,9 @@ window.onload = () => {
     showInitialHtml()
 
     function getWordOnClick(){
-        const playButton = document.querySelector("[wordForm]");
-        playButton.onsubmit = (event) => {
+        const wordForm = document.querySelector("[wordForm]");
+        wordForm.palavraName.focus() // Seleciona o input text chamado "palavra name" e o foca
+        wordForm.onsubmit = (event) => {
             event.preventDefault()
             //Pega a palavra digitada
             let palavraInput = document.querySelector("#palavra");
@@ -55,6 +56,8 @@ window.onload = () => {
             <button wm-letter-button>OK</button>
             </form>
             `.trim()
+            //Focar o input
+            document.querySelector('[wm-letra]').focus()
             // Pegar letra chutada
             letterButton = document.querySelector('[wm-letter-button]')
             let novaP = document.createElement('p') //Criar novo elemento para inserir letras acertadas e erradas.
