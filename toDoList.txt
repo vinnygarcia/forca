@@ -1,0 +1,9 @@
+1. Terminar as funcionalidades principais do jogo
+2. Botar anúncios na página
+3. Fazer uma funcinalidade que permite enviar um jogo de forca com palavras personalizadas para outra pessoa 
+e compartilhar pelo whatsapp o link. (Dificuldade: como salvar as palavras?)
+4. Divulgar
+5. Permitir adicionar várias palavras de uma vez e oferecer a opção de embaralhar ou não
+
+Ideia de outro jogo:
+Palavra cruzada com palavras personalizadas.
