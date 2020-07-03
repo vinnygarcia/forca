@@ -111,10 +111,11 @@ window.onload = () => {
         const wordLettersSet = new Set(wordLetters) 
         if (wordLettersSet.size === correctLetters.size) {
             alert("Você ganhooooou!!!!!!!\nParabéns!!!!!!!")
+            // Redirecionar para a página para reiniciar o jogo.
+            const urlAtual = window.location.href
+            window.location.href = urlAtual
         }
-        // Redirecionar para a página para reiniciar o jogo.
-        const urlAtual = window.location.href
-        window.location.href = urlAtual
+        
     }
 
 };
