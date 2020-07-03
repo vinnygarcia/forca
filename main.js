@@ -47,14 +47,17 @@ window.onload = () => {
             <p>Você tem ${nTentativas} tentativas.</p>
             <h2 wm-impressaoForca>${impressaoForca}</h2>
             <p>Chute uma letra:</p>
+            <form name="letterForm">
             <input wm-letra type="text" placeholder="Digite 1 letra...">
             <button wm-letter-button>OK</button>
+            </form>
             `.trim()
             // Pegar letra chutada
             letterButton = document.querySelector('[wm-letter-button]')
             let novaP = document.createElement('p') //Criar novo elemento para inserir letras acertadas e erradas.
             letterButton.after(novaP) // Insere o elemento novaP criado depois do botão
-            letterButton.onclick = () => {
+            letterButton.onclick = (event) => {
+                event.preventDefault() // Previne que o browser atualize a página pra enviar o formulário.
                 let letraChutada = document.querySelector('[wm-letra]').value
                 if (word.includes(letraChutada)) {
                     correctLetters.add(letraChutada)
