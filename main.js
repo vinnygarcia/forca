@@ -1,3 +1,5 @@
+// TODO Aceitar somente input de 1 letra por vez, ou então aceitar multiplas letras corretamente
+
 window.onload = () => {
     let word = 'palavraOriginal'
     let impressaoForca = ''
@@ -26,7 +28,7 @@ window.onload = () => {
             event.preventDefault()
             //Pega a palavra digitada
             let palavraInput = document.querySelector("#palavra");
-            word = palavraInput.value; //definido no começo
+            word = palavraInput.value.toLowerCase(); //definido no começo
             console.log(word);
             // Dividir a palavra em letras
             let wordLetters = word.split('');
@@ -64,7 +66,7 @@ window.onload = () => {
             letterButton.after(novaP) // Insere o elemento novaP criado depois do botão
             letterButton.onclick = (event) => {
                 event.preventDefault() // Previne que o browser atualize a página pra enviar o formulário.
-                let letraChutada = document.querySelector('[wm-letra]').value
+                let letraChutada = document.querySelector('[wm-letra]').value.toLowerCase()
                 if (word.includes(letraChutada)) {
                     correctLetters.add(letraChutada)
                     console.log('possui a letra')

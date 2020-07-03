@@ -7,3 +7,4 @@ e compartilhar pelo whatsapp o link. (Dificuldade: como salvar as palavras?)
 6. Refatorar o código.
 Ideia de outro jogo:
 Palavra cruzada com palavras personalizadas.
+7. Usar jogo de forca junto com perguntas e respostas (flashcards) para melhorar aprendizado
