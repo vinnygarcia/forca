@@ -1,6 +1,7 @@
 window.onload = () => {
     let word = 'palavraOriginal'
     let impressaoForca = ''
+    let nTentativas = 5
     let gameBox = document.querySelector("#gameBox");
     let correctLetters = new Set()
     let wrongLetters = new Set()
@@ -43,9 +44,10 @@ window.onload = () => {
             // Iniciar tela da forca
             gameBox.innerHTML = `
             <p>A palavra tem ${word.length} letras.</p>
+            <p>Você tem ${nTentativas} tentativas.</p>
             <h2 wm-impressaoForca>${impressaoForca}</h2>
-            <p>Chute uma letra</p>
-            <input wm-letra type="text" placeholder="digita 1 letra...">
+            <p>Chute uma letra:</p>
+            <input wm-letra type="text" placeholder="Digite 1 letra...">
             <button wm-letter-button>OK</button>
             `.trim()
             // Pegar letra chutada
