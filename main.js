@@ -10,16 +10,19 @@ window.onload = () => {
         //Mostra um menu para digitar a palavra e começar o jogo
         let initialHtml = `
         <p>Escreva uma letra para começar o jogo</p>
-        <input type="text" id="palavra" placeholder="Escreva aqui...">
-        <button type="button" id="playButton">Jogar!</button>
+        <form wordForm>
+            <input type="text" id="palavra" placeholder="Escreva aqui...">
+            <button id="playButton">Jogar!</button>
+        </form>
         `.trim();
         gameBox.innerHTML = initialHtml;
     }
     showInitialHtml()
 
     function getWordOnClick(){
-        const playButton = document.querySelector("#playButton");
-        playButton.onclick = () => {
+        const playButton = document.querySelector("[wordForm]");
+        playButton.onsubmit = (event) => {
+            event.preventDefault()
             //Pega a palavra digitada
             let palavraInput = document.querySelector("#palavra");
             word = palavraInput.value; //definido no começo
