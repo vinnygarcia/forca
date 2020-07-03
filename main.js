@@ -48,7 +48,7 @@ window.onload = () => {
             // Iniciar tela da forca
             gameBox.innerHTML = `
             <p>A palavra tem ${word.length} letras.</p>
-            <p>Você tem ${nTentativas} tentativas.</p>
+            <p p-nTentativas>Você tem ${nTentativas} tentativas.</p>
             <h2 wm-impressaoForca>${impressaoForca}</h2>
             <p>Chute uma letra:</p>
             <form name="letterForm">
@@ -72,6 +72,7 @@ window.onload = () => {
                 else {
                     wrongLetters.add(letraChutada)
                     console.log("não possui a letra")
+                    nTentativas -= 1
                 }
                 // Atualizar na tela as palavras acertadas e incorretas
                 novaP.innerHTML = `
@@ -81,9 +82,14 @@ window.onload = () => {
                 imprimirForca()
                 let impressaoForcaHtml = document.querySelector('[wm-impressaoForca]')
                 impressaoForcaHtml.innerHTML = `${impressaoForca.toUpperCase()}`
+                // Atualizar número de tentativas
+                document.querySelector('[p-nTentativas]')
+                .innerHTML= `Você tem ${nTentativas}`
                 // Apagar o valor do input de texto.
                 document.querySelector('[wm-letra]').value = ''
-
+                // Checar perca ou ganho
+                checkLoss(nTentativas)
+                checkWin()
             }
 
         };
@@ -91,11 +97,24 @@ window.onload = () => {
     }
     getWordOnClick();
 
-    // Tela 2 - Começar o jogo (deve ser ativado só depois de pegar a palavra).
-    function startGame() {
-        // Separa as letras
-        console.log('hey')
-
+    // Funções usadas ---------------------------------------------
+    function checkLoss(nTentativas) { 
+        if (nTentativas === 0) {
+            alert("Voce perdeu!\nTente de novo!")
+            // Redirecionar para a página para reiniciar o jogo.
+            const urlAtual = window.location.href
+            window.location.href = urlAtual
+        }
+    }
+    function checkWin() {
+        const wordLetters = word.split('')
+        const wordLettersSet = new Set(wordLetters) 
+        if (wordLettersSet.size === correctLetters.size) {
+            alert("Você ganhooooou!!!!!!!\nParabéns!!!!!!!")
+        }
+        // Redirecionar para a página para reiniciar o jogo.
+        const urlAtual = window.location.href
+        window.location.href = urlAtual
     }
 
 };
