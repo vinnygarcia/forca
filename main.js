@@ -1,4 +1,6 @@
 // TODO Aceitar somente input de 1 letra por vez, ou então aceitar multiplas letras corretamente
+// TODO Adicinar opção de iniciar com palavras armazenadas.
+// TODO dicas
 
 window.onload = () => {
     let word = 'palavraOriginal'
@@ -11,7 +13,7 @@ window.onload = () => {
     let showInitialHtml = () =>{
         //Mostra um menu para digitar a palavra e começar o jogo
         let initialHtml = `
-        <p>Escreva uma letra para começar o jogo</p>
+        <p>Escreva uma palavra para jogar</p>
         <form wordForm>
             <input type="text" id="palavra" name="palavraName" placeholder="Escreva aqui...">
             <button id="playButton">Jogar!</button>
@@ -53,7 +55,7 @@ window.onload = () => {
             <p p-nTentativas>Você tem ${nTentativas} tentativas.</p>
             <h2 wm-impressaoForca>${impressaoForca}</h2>
             <p>Chute uma letra:</p>
-            <form name="letterForm">
+            <form letterForm>
             <input wm-letra type="text" placeholder="Digite 1 letra...">
             <button wm-letter-button>OK</button>
             </form>
@@ -64,7 +66,8 @@ window.onload = () => {
             letterButton = document.querySelector('[wm-letter-button]')
             let novaP = document.createElement('p') //Criar novo elemento para inserir letras acertadas e erradas.
             letterButton.after(novaP) // Insere o elemento novaP criado depois do botão
-            letterButton.onclick = (event) => {
+            let letterForm = document.querySelector('[letterForm]')
+            letterForm.onsubmit = (event) => {
                 event.preventDefault() // Previne que o browser atualize a página pra enviar o formulário.
                 let letraChutada = document.querySelector('[wm-letra]').value.toLowerCase()
                 if (word.includes(letraChutada)) {
@@ -89,6 +92,8 @@ window.onload = () => {
                 .innerHTML= `Você tem ${nTentativas}`
                 // Apagar o valor do input de texto.
                 document.querySelector('[wm-letra]').value = ''
+                //Focar o input
+                document.querySelector('[wm-letra]').focus()
                 // Checar perca ou ganho
                 checkLoss(nTentativas)
                 checkWin()
@@ -102,7 +107,7 @@ window.onload = () => {
     // Funções usadas ---------------------------------------------
     function checkLoss(nTentativas) { 
         if (nTentativas === 0) {
-            alert("Voce perdeu!\nTente de novo!")
+            alert(`Voce perdeu! :(\nA palavra correta era ${word.toUpperCase()}\nTente de novo!`)
             // Redirecionar para a página para reiniciar o jogo.
             const urlAtual = window.location.href
             window.location.href = urlAtual
@@ -112,7 +117,7 @@ window.onload = () => {
         const wordLetters = word.split('')
         const wordLettersSet = new Set(wordLetters) 
         if (wordLettersSet.size === correctLetters.size) {
-            alert("Você ganhooooou!!!!!!!\nParabéns!!!!!!!")
+            alert(`Você acertou!!! :)\nA palavra era ${word.toUpperCase()}\nContinue assim!`)
             // Redirecionar para a página para reiniciar o jogo.
             const urlAtual = window.location.href
             window.location.href = urlAtual
